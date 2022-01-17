@@ -14,22 +14,22 @@ public class ArithmaticCalculator {
 		switch (choice) {
 		case '+':
 			result = number1 + number2;
-			System.out.println(result);
+			System.out.println("Addition is: "+result);
 			break;
 
 		case '-':
 			result = number1 - number2;
-			System.out.println(result);
+			System.out.println("Substraction is :"+result);
 			break;
 
 		case '*':
 			result = number1 * number2;
-			System.out.println(result);
+			System.out.println("Multiplication is :"+result);
 			break;
 
 		case '/':
 			result = number1 / number2;
-			System.out.println(result);
+			System.out.println("Division is :"+result);
 			break;
 
 		default:
