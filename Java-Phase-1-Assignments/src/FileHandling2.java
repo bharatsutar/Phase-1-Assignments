@@ -83,26 +83,27 @@ public class FileHandling2 {
 	}
 
 	public static void ViewAllRecord() throws IOException {
-		 BufferedReader br = new BufferedReader( new FileReader("records.txt") );
-		 
-		 String record;
-		 
-		 System.out.println(" ---------------------------------------------------------- ");
-		 System.out.println("| ID Name Age Address |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 
-		 while( ( record = br.readLine() ) != null ) {
-		 
-		 StringTokenizer st = new StringTokenizer(record,",");
-		 
-		 System.out.println("| "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" |");
-		 }
-		 
-		 System.out.println("|                     |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 br.close(); 
-		 
-		 }
+		BufferedReader br = new BufferedReader(new FileReader("records.txt"));
+
+		String record;
+
+		System.out.println(" ---------------------------------------------------------- ");
+		System.out.println("| ID Name Age Address |");
+		System.out.println(" ------------------------------------------------------------- ");
+
+		while ((record = br.readLine()) != null) {
+
+			StringTokenizer st = new StringTokenizer(record, ",");
+
+			System.out.println(
+					"| " + st.nextToken() + " " + st.nextToken() + " " + st.nextToken() + " " + st.nextToken() + " |");
+		}
+
+		System.out.println("|                     |");
+		System.out.println(" ------------------------------------------------------------- ");
+		br.close();
+
+	}
 
 	public static void DeleteRecordByID() throws IOException {
 		Scanner scInput = new Scanner(System.in);
@@ -138,101 +139,96 @@ public class FileHandling2 {
 	}
 
 	public static void SearchRecordbyID() throws IOException {
-		 String ID,record;
-		 Scanner scInput = new Scanner(System.in);
-		 
-		 BufferedReader br = new BufferedReader( new
-		FileReader("records.txt") );
-		 
-		 System.out.println("\t\t Search Employee Record\n");
-		 
-		 
-		 System.out.println("Enter the Employee ID: ");
-		 ID = scInput.nextLine();
-		 
-		 System.out.println(" ------------------------------------------------------------- ");
-		 System.out.println("| ID Name Age Address |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 
-		 while( ( record = br.readLine() ) != null ) {
-		 
-		 StringTokenizer st = new StringTokenizer(record,",");
-		 if( record.contains(ID) ) {
-		 System.out.println("| "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" |");
-		 }
-		 
-		 
-		 
-		 }
-		 
-		 System.out.println("|  |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 
-		 br.close();
-		 
-		 
-		 
-		 }
+		String ID, record;
+		Scanner scInput = new Scanner(System.in);
+
+		BufferedReader br = new BufferedReader(new FileReader("records.txt"));
+
+		System.out.println("\t\t Search Employee Record\n");
+
+		System.out.println("Enter the Employee ID: ");
+		ID = scInput.nextLine();
+
+		System.out.println(" ------------------------------------------------------------- ");
+		System.out.println("| ID Name Age Address |");
+		System.out.println(" ------------------------------------------------------------- ");
+
+		while ((record = br.readLine()) != null) {
+
+			StringTokenizer st = new StringTokenizer(record, ",");
+			if (record.contains(ID)) {
+				System.out.println("| " + st.nextToken() + " " + st.nextToken() + " " + st.nextToken() + " "
+						+ st.nextToken() + " |");
+			}
+
+		}
+
+		System.out.println("|  |");
+		System.out.println(" ------------------------------------------------------------- ");
+
+		br.close();
+
+	}
 
 	public static void updateRecordbyID() throws IOException {
-		 String newName, newAge, newAddr, record, ID,record2;
-		 
-		 File db = new File("records.txt");
-		 File tempDB = new File("records_temp.txt");
-		 
-		 BufferedReader br = new BufferedReader( new FileReader(db) );
-		 BufferedWriter bw = new BufferedWriter( new FileWriter(tempDB) );
-		 
-		 Scanner scInput = new Scanner(System.in);
-		 
-		 System.out.println("\t\t Update Employee Record\n\n"); 
+		String newName, newAge, newAddr, record, ID, record2;
+
+		File db = new File("records.txt");
+		File tempDB = new File("records_temp.txt");
+
+		BufferedReader br = new BufferedReader(new FileReader(db));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(tempDB));
+
+		Scanner scInput = new Scanner(System.in);
+
+		System.out.println("\t\t Update Employee Record\n\n");
 		/**/
 		System.out.println("Enter the Employee ID: ");
-		 ID = scInput.nextLine(); 
-		 System.out.println(" ------------------------------------------------------------- ");
-		 System.out.println("| ID Name Age Address |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 
-		 while( ( record = br.readLine() ) != null ) {
-		 
-		 StringTokenizer st = new
-		StringTokenizer(record,",");
-		 if( record.contains(ID) ) {
-		 System.out.println("| "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" "+st.nextToken()+" |");
-		 }
-		 
-		 } 
-		 System.out.println("| |");
-		 System.out.println(" ------------------------------------------------------------- ");
-		 
-		 br.close();
-		/**/ 
-		 System.out.println("Enter the new Name: ");
-		 newName = scInput.nextLine(); 
-		 System.out.println("Enter the new Age: ");
-		 newAge = scInput.nextLine(); 
-		 System.out.println("Enter the new Address: ");
-		 newAddr = scInput.nextLine(); 
-		 
-		 BufferedReader br2 = new BufferedReader( new FileReader(db) );
-		 
-		 while( (record2 = br2.readLine() ) != null ) { 
-		 if(record2.contains(ID)) {
-		 bw.write(ID+","+newName+","+newAge+","+newAddr);
-		 } else {
-		 
-		 bw.write(record2);
-		 } 
-		 bw.flush();
-		 bw.newLine();
-		 }
-		 
-		 bw.close();
-		 br2.close(); 
-		 db.delete(); 
-		 boolean success = tempDB.renameTo(db); 
-		 System.out.println(success); 
-		 
-		 }
+		ID = scInput.nextLine();
+		System.out.println(" ------------------------------------------------------------- ");
+		System.out.println("| ID Name Age Address |");
+		System.out.println(" ------------------------------------------------------------- ");
+
+		while ((record = br.readLine()) != null) {
+
+			StringTokenizer st = new StringTokenizer(record, ",");
+			if (record.contains(ID)) {
+				System.out.println("| " + st.nextToken() + " " + st.nextToken() + " " + st.nextToken() + " "
+						+ st.nextToken() + " |");
+			}
+
+		}
+		System.out.println("| |");
+		System.out.println(" ------------------------------------------------------------- ");
+
+		br.close();
+		/**/
+		System.out.println("Enter the new Name: ");
+		newName = scInput.nextLine();
+		System.out.println("Enter the new Age: ");
+		newAge = scInput.nextLine();
+		System.out.println("Enter the new Address: ");
+		newAddr = scInput.nextLine();
+
+		BufferedReader br2 = new BufferedReader(new FileReader(db));
+
+		while ((record2 = br2.readLine()) != null) {
+			if (record2.contains(ID)) {
+				bw.write(ID + "," + newName + "," + newAge + "," + newAddr);
+			} else {
+
+				bw.write(record2);
+			}
+			bw.flush();
+			bw.newLine();
+		}
+
+		bw.close();
+		br2.close();
+		db.delete();
+		boolean success = tempDB.renameTo(db);
+		System.out.println(success);
+
+	}
 
 }
